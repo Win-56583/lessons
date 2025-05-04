@@ -1,0 +1,45 @@
+//This code is written in Arduino App
+//delete all "//" before use
+#define PIN_TRIG [X]     //PIN_TRIG is the custom name      23 is the nunber connected to ESP 32
+#define PIN_ECHO [X]     //PIN_ECHO is the custom name      22 is the number connected to ESP 32
+#include <ESP32Servo.h>       //"ESP32Servo" is the name of libary
+Servo myservo;   //myservo is  the custom name
+Servo myservo2;  //myservo2 is  the custom name
+Servo myservo3;  //myservo3 is  the custom name
+Servo myservo4;  //myservo4 is  the custom name
+int distance = 400;
+
+void setup () {
+  Serial.begin (115200);
+  pinMode(PIN_TRIG, OUTPUT);
+  pinMode(PIN_ECHO, INPUT);
+  myservo.attach  ([X]); //the number on ESP
+  myservo2.attach ([X]);
+  myservo3.attach ([X]);
+  myservo4.attach ([X]);
+  myservo.write(0); //0 is the degree of servo
+  myservo2.write(0);
+  myservo3.write(0);
+  myservo4.write(0);
+}
+
+void loop () {
+  digitalWrite(PIN_TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(PIN_TRIG, LOW);
+  int duration = pulseIn(PIN_ECHO, HIGH);
+  int distanceCM = duration*0.034/2;
+    if (distanceCM <=10){
+      myservo.write(145);
+      myservo2.write(45);
+      myservo3.write(145);
+      myservo4.write(45);
+  } 
+    else {
+      myservo.write(180);
+      myservo2.write(180);
+      myservo3.write(180);
+      myservo4.write(180);
+
+//Written by Win
+
